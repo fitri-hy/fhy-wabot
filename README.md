@@ -200,7 +200,7 @@ const ManualResponse = {
     ],
 };
 
-WaBot.sendMessage(ManualResponse);
+WaBot(ManualResponse);
 ```
 
 #### Endpoint Usage Example
@@ -223,7 +223,7 @@ app.post('/send-message', async (req, res) => {
     }
 });
 
-WaBot.sendMessage(ManualResponse);
+WaBot(ManualResponse);
 ```
 
 **Request Body:**:
