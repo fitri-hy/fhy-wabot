@@ -201,7 +201,7 @@ const ManualResponse = {
     ],
 };
 
-WaBot.sendMessage(ManualResponse);
+WaBot(ManualResponse);
 ```
 
 #### Contoh Penggunaan Endpoint 
@@ -224,7 +224,7 @@ app.post('/send-message', async (req, res) => {
     }
 });
 
-WaBot.sendMessage(ManualResponse);
+WaBot(ManualResponse);
 ```
 
 **Body Permintaan**:
