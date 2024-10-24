@@ -405,6 +405,85 @@ const ManualResponse = {
 WaBot(true, QRCustom, AutoResponse, ManualResponse);
 ```
 
+## Contoh Penggunaan Tingkat Lanjut
+
+```javascript
+const { WaBot } = require('fhy-wabot');
+
+(async () => {
+    const sock = await WaBot(false, null, null, null);
+
+    sock.ev.on('messages.upsert', async ({ messages }) => {
+        const { remoteJid: sender } = messages[0].key;
+        const text = messages[0].message.conversation || messages[0].message.extendedTextMessage?.text || '';
+
+        if (text.toLowerCase() === '!hi') {
+            try {
+                await sock.sendMessage(sender, { text: 'oh hello there' });
+            } catch (error) {
+                console.error(`Error occurred: ${error.message}`);
+            }
+        }
+    });
+})();
+```
+
+## Contoh Penggunaan Penuh Tingkat Lanjut
+
+```javascript
+const { WaBot } = require('fhy-wabot');
+const QRCode = require('qrcode');
+
+const QRCustom = async (qr) => {
+    try {
+        const url = await QRCode.toDataURL(qr);
+        console.log('Custom QRCode URL:', url);
+    } catch (err) {
+        console.error('Failed to generate QR URL:', err);
+    }
+};
+
+const AutoResponse = {
+    'text': {
+        '!text': { 
+			response: 'pong!', 
+			reply: false 
+		}
+        // Anda dapat menambahkan data lain di sini
+    },
+    // Anda dapat menambahkan tipe data lain di sini
+};
+
+const ManualResponse = {
+	text: [
+		{
+			id: '628xxxxxxxxxx@s.whatsapp.net',
+			messageText: 'I sent text!'
+		}
+        // Anda dapat menambahkan data lain di sini
+	],
+    // Anda dapat menambahkan tipe data lain di sini
+};
+
+(async () => {
+    const sock = await WaBot(true, QRCustom, AutoResponse, ManualResponse);
+
+    sock.ev.on('messages.upsert', async ({ messages }) => {
+        const { remoteJid: sender } = messages[0].key;
+        const text = messages[0].message.conversation || messages[0].message.extendedTextMessage?.text || '';
+
+        if (text.toLowerCase() === '.test') {
+            try {
+                await sock.sendMessage(sender, { text: 'oh hello there' });
+            } catch (error) {
+                console.error(`Error occurred: ${error.message}`);
+            }
+        }
+        // Anda dapat menambahkan data tingkat lanjut lain di sini
+    });
+})();
+```
+
 ## Dukungan dan Kontribusi
 
 Jika Anda mengalami masalah atau memiliki pertanyaan mengenai penggunaan paket ini, silakan buka masalah di repositori GitHub Anda. Kontribusi juga sangat diharapkan untuk meningkatkan fitur dan fungsionalitas `fhy-wabot`.
