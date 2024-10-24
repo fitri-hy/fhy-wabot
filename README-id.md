@@ -1,53 +1,53 @@
 - [English Version](./README.md)
 - [Versi Bahasa Indonesia](./README-id.md)
 
-# Documentation
+# Dokumentasi
 
-fhy-wabot is a Node.js package designed to simplify the use of WhatsApp Bots.
+fhy-wabot adalah paket Node.js yang dirancang untuk menyederhanakan penggunaan WhatsApp Bot.
 
-## Installation
+## Instalasi
 
-To install the `fhy-wabot` package, run the following command in the terminal:
+Untuk menginstal paket `fhy-wabot`, jalankan perintah berikut di terminal:
 
 ```
 npm install fhy-wabot
 
 ```
 
-#### Usage
+#### Penggunaan
 
-After installing the package, you can use it in your Node.js project as follows (**server.js**):
+Setelah menginstal paket, Anda dapat menggunakannya di proyek Node.js Anda sebagai berikut (**server.js**):
 
-#### Import Package
+#### Paket Impor
 
-First, import `WaBot` from `fhy-wabot`:
+Pertama, impor `WaBot` dari `fhy-wabot`:
 
 ```javascript
 const { WaBot } = require('fhy-wabot');
 ```
 
-#### Initialize and Run the Bot
+#### Inisialisasi dan Jalankan Bot
 
-Next, call the `WaBot()` function to initialize and run the bot:
+Selanjutnya, panggil fungsi `WaBot()` untuk menginisialisasi dan menjalankan bot:
 
 ```javascript
 WaBot(false, null, null, null);
 ```
 
-#### Usage Example
+#### Contoh Penggunaan
 
-Here’s a complete example of how to use `fhy-wabot`:
+Berikut contoh lengkap cara menggunakan `fhy-wabot`:
 
 ```javascript
 const { WaBot } = require('fhy-wabot');
 
-// Initialize and run the bot
+// Inisialisasi dan jalankan bot
 WaBot(false, null, null, null);
 ```
 
-#### QRCode Url
+#### URL QRCode
 
-You can make the QRcode a data URL with the following command:
+Anda dapat menjadikan QRcode sebagai URL data dengan perintah berikut:
 
 ```javascript
 const { WaBot } = require('fhy-wabot');
@@ -65,9 +65,9 @@ const QRCustom = async (qr) => {
 WaBot(true, QRCustom, null, null);
 ```
 
-## Sending Automatic Response Messages
+## Mengirim Pesan Respons Otomatis
 
-`AutoResponse` is an object used to configure automatic responses that will be given by the bot based on the received input. (supports multi-message).
+`AutoResponse` adalah objek yang digunakan untuk mengonfigurasi respons otomatis yang akan diberikan oleh bot berdasarkan masukan yang diterima. (mendukung multi-pesan).
 
 ```javascript
 const { WaBot } = require('fhy-wabot');
@@ -78,19 +78,19 @@ const AutoResponse = {
 			response: 'pong!', 
 			reply: false 
 		}
-		// You can add other data here
+		// Anda dapat menambahkan data lain di sini
     },
-    // You can add other data types here
+    // Anda dapat menambahkan tipe data lain di sini
 };
 
 WaBot(false, null, AutoResponse, null);
 ```
 
-> - **response**: The message that will be sent (e.g., 'pong!').
-> - **reply**: If set to `true`, the bot will reply to the message with a quote.
+> - **response**: Pesan yang akan dikirim (misal, 'pong!').
+> - **reply**: Jika disetel ke `true`, bot akan membalas pesan dengan kutipan.
 
 
-#### Text
+#### Teks
 
 ```javascript
 'text': {
@@ -101,7 +101,7 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-#### Text With Reaction
+#### Teks Dengan Reaksi
 
 ```javascript
 'textReact': {
@@ -115,11 +115,11 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-> - **preReact**: Emoji displayed before sending the message (e.g., '⏳').
-> - **postReact**: Emoji displayed after the message is sent (e.g., '✅').
-> - **errReact**: Emoji displayed if an error occurs (e.g., '❌').
+> - **preReact**: Emoji ditampilkan sebelum mengirim pesan (misalnya, '⏳').
+> - **postReact**: Emoji ditampilkan setelah pesan terkirim (misalnya, '✅').
+> - **errReact**: Emoji ditampilkan jika terjadi kesalahan (misalnya, '❌').
 
-#### Mention
+#### Menyebutkan
 
 ```javascript
 'mention': {
@@ -131,9 +131,9 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-> - **mention**: The ID number of the user to mention.
+> - **mention**: Nomor ID pengguna yang ingin disebutkan.
 
-#### Mention With Reaction
+#### Sebutkan Dengan Reaksi
 
 ```javascript
 'mention': {
@@ -148,7 +148,7 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-#### Location
+#### Lokasi
 
 ```javascript
 'location': {
@@ -160,11 +160,11 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-> - **latitude**: The latitude of the location to be shared.
-> - **longitude**: The longitude of the location to be shared.
+> - **latitude**: Garis lintang lokasi yang akan dibagikan.
+> - **longitude**: Bujur lokasi yang akan dibagikan.
 
 
-#### Location With Reaction
+#### Lokasi Dengan Reaksi
 
 ```javascript
 'locationReact': {
@@ -179,7 +179,7 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-#### Images
+#### Gambar
 
 ```javascript
 'images': {
@@ -191,10 +191,10 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-> - **url**: Image location
-> - **caption**: Image caption
+> - **url**: Lokasi gambar
+> - **caption**: Keterangan gambar
 
-#### Images With Reaction
+#### Gambar Dengan Reaksi
 
 ```javascript
 'imagesReact': {
@@ -221,7 +221,7 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-#### Video With Reaction
+#### Video Dengan Reaksi
 
 ```javascript
 'videoReact': {
@@ -248,7 +248,7 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-#### Audio With Reaction
+#### Audio Dengan Reaksi
 
 ```javascript
 'audioReact': {
@@ -263,9 +263,9 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
-## Sending Messages
+## Mengirim Pesan
 
-`ManualResponse` is an object used to configure various types of messages you want to send (supports multi-message).
+`ManualResponse` adalah objek yang digunakan untuk mengkonfigurasi berbagai jenis pesan yang ingin dikirim (mendukung multi-pesan).
 
 ```javascript
 const { WaBot } = require('fhy-wabot');
@@ -293,10 +293,10 @@ text: [
 ],
 ```
 
-> - **id**: Message recipient number
-> - **messageText**: Message content
+> - **id**: Nomor penerima pesan
+> - **messageText**: Isi pesan
 
-#### Images
+#### Gambar
 
 ```javascript
 images: [
@@ -308,8 +308,8 @@ images: [
 ],
 ```
 
-> - **url**: Image location
-> - **caption**: Image caption
+> - **url**: Lokasi gambar
+> - **caption**: Keterangan gambar
 
 #### Video
 
@@ -335,7 +335,7 @@ audio: [
 ],
 ```
 
-#### Mention
+#### Menyebutkan
 
 ```javascript
 mention: [
@@ -347,7 +347,7 @@ mention: [
 ],
 ```
 
-> - **mention**: ID number to mention
+> - **mention**: Nomor ID untuk disebutkan
 
 
 #### Location
@@ -362,10 +362,10 @@ location: [
 ],
 ```
 
-> - **latitude**: The latitude of the location to be shared.
-> - **longitude**: The longitude of the location to be shared.
+> - **latitude**: Garis lintang lokasi yang akan dibagikan.
+> - **longitude**: Bujur lokasi yang akan dibagikan.
 
-## Complete Usage Example
+## Contoh Penggunaan Lengkap
 
 ```javascript
 const { WaBot } = require('fhy-wabot');
@@ -386,9 +386,9 @@ const AutoResponse = {
 			response: 'pong!', 
 			reply: false 
 		}
-        // You can add other data here
+        // Anda dapat menambahkan data lain di sini
     },
-    // You can add other data types here
+    // Anda dapat menambahkan tipe data lain di sini
 };
 
 const ManualResponse = {
@@ -397,14 +397,14 @@ const ManualResponse = {
 			id: '628xxxxxxxxxx@s.whatsapp.net',
 			messageText: 'I sent text!'
 		}
-        // You can add other data here
+        // Anda dapat menambahkan data lain di sini
 	],
-    // You can add other data types here
+    // Anda dapat menambahkan tipe data lain di sini
 };
 
 WaBot(true, QRCustom, AutoResponse, ManualResponse);
 ```
 
-## Support and Contributions
+## Dukungan dan Kontribusi
 
-If you encounter any issues or have questions regarding the use of this package, please open an issue in your GitHub repository. Contributions are also very welcome to improve the features and functionality of `fhy-wabot`.
+Jika Anda mengalami masalah atau memiliki pertanyaan mengenai penggunaan paket ini, silakan buka masalah di repositori GitHub Anda. Kontribusi juga sangat diharapkan untuk meningkatkan fitur dan fungsionalitas `fhy-wabot`.
