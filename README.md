@@ -234,7 +234,7 @@ WaBot(false, null, AutoResponse, null);
         reply: false 
     },
 },
-
+```
 
 #### Audio
 
