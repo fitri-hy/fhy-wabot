@@ -410,8 +410,10 @@ WaBot(true, QRCustom, AutoResponse, ManualResponse);
 ```javascript
 const { WaBot } = require('fhy-wabot');
 
+const AutoResponse = {};
+const ManualResponse = {};
 (async () => {
-    const sock = await WaBot(false, null, null, null);
+    const sock = await WaBot(false, null, AutoResponse, ManualResponse);
 
     sock.ev.on('messages.upsert', async ({ messages }) => {
         const { remoteJid: sender } = messages[0].key;
