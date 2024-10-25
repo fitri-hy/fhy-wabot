@@ -29,7 +29,7 @@ const ManualResponse = {
 };
 
 (async () => {
-    const sock = await WaBot(true, QRCustom, AutoResponse, ManualResponse);
+    const sock = await WaBot(false, QRCustom, AutoResponse, ManualResponse);
 
     sock.ev.on('messages.upsert', async ({ messages }) => {
         const { remoteJid: sender } = messages[0].key;
