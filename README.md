@@ -263,6 +263,43 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
+#### Polling
+
+```
+'polling': {
+	'!poll': { 
+		poll: {
+			name: 'Title Polling:',
+			values: ['Option 1', 'Option 2', 'Option 3'],
+			selectableCount: 1
+		},
+		reply: false 
+	}
+},
+```
+
+> - **name**: Poll Title
+> - **values**: Fill in the poll options
+> - **selectableCount**: `1` for just one option, `0` for multiple options
+
+#### Polling With Reaction
+
+```
+'pollingReact': {
+	'!poll-react': { 
+		poll: {
+			name: 'Title Polling:',
+			values: ['Option 1', 'Option 2', 'Option 3'],
+			selectableCount: 1
+		},
+		preReact: '⏳', 
+		postReact: '✅', 
+		errReact: '❌', 
+		reply: false 
+	}
+}
+```
+
 ## Sending Messages
 
 `ManualResponse` is an object used to configure various types of messages you want to send (supports multi-message).
@@ -412,6 +449,7 @@ const { WaBot } = require('fhy-wabot');
 
 const AutoResponse = {};
 const ManualResponse = {};
+
 (async () => {
     const sock = await WaBot(false, null, AutoResponse, ManualResponse);
 

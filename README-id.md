@@ -263,6 +263,44 @@ WaBot(false, null, AutoResponse, null);
 },
 ```
 
+#### Jajak Pendapat
+
+```
+'polling': {
+	'!poll': { 
+		poll: {
+			name: 'Title Polling:',
+			values: ['Option 1', 'Option 2', 'Option 3'],
+			selectableCount: 1
+		},
+		reply: false 
+	}
+},
+```
+
+> - **name**: Judul Jajak Pendapat
+> - **values**: Isi opsi jajak pendapat
+> - **selectableCount**: `1` untuk satu pilihan, `0` untuk beberapa pilihan
+
+#### Jajak Pendapat Dengan Reaksi
+
+```
+'pollingReact': {
+	'!poll-react': { 
+		poll: {
+			name: 'Title Polling:',
+			values: ['Option 1', 'Option 2', 'Option 3'],
+			selectableCount: 1
+		},
+		preReact: '⏳', 
+		postReact: '✅', 
+		errReact: '❌', 
+		reply: false 
+	}
+}
+```
+
+
 ## Mengirim Pesan
 
 `ManualResponse` adalah objek yang digunakan untuk mengkonfigurasi berbagai jenis pesan yang ingin dikirim (mendukung multi-pesan).
@@ -412,6 +450,7 @@ const { WaBot } = require('fhy-wabot');
 
 const AutoResponse = {};
 const ManualResponse = {};
+
 (async () => {
     const sock = await WaBot(false, null, AutoResponse, ManualResponse);
 

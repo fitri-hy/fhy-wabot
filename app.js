@@ -10,11 +10,30 @@ const QRCustom = async (qr) => {
     }
 };
 
-const AutoResponse = {};
-const ManualResponse = {};
+const AutoResponse = {
+    'text': {
+        '!text': { 
+            response: 'pong!', 
+            reply: false 
+        }
+        // You can add other data here
+    },
+    // You can add other data types here
+};
+
+const ManualResponse = {
+    text: [
+        {
+            id: '628xxxxxxxxxx@s.whatsapp.net',
+            messageText: 'I sent text!'
+        }
+        // You can add other data here
+    ],
+    // You can add other data types here
+};
 
 (async () => {
-    const sock = await WaBot(false, QRCustom, AutoResponse, ManualResponse);
+    const sock = await WaBot(true, QRCustom, AutoResponse, ManualResponse);
 
     sock.ev.on('messages.upsert', async ({ messages }) => {
         const { remoteJid: sender } = messages[0].key;
@@ -27,5 +46,6 @@ const ManualResponse = {};
                 console.error(`Error occurred: ${error.message}`);
             }
         }
+        // You can add other advanced data here
     });
 })();
