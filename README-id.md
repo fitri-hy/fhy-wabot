@@ -391,17 +391,37 @@ mention: [
 #### Location
 
 ```javascript
-location: [
+polling: [
 	{
 		id: '628xxxxxxxxxx@s.whatsapp.net',
-		latitude: 24.121231, 
-		longitude: 55.1121221
+		name: 'Title Polling:',
+		values: ['Option 1', 'Option 2', 'Option 3'],
+		selectableCount: 1
 	}
 ],
 ```
 
 > - **latitude**: Garis lintang lokasi yang akan dibagikan.
 > - **longitude**: Bujur lokasi yang akan dibagikan.
+
+#### Jajak Pendapat
+
+```
+'polling': {
+	'!poll': { 
+		poll: {
+			name: 'Title Polling:',
+			values: ['Option 1', 'Option 2', 'Option 3'],
+			selectableCount: 1
+		},
+		reply: false 
+	}
+},
+```
+
+> - **name**: Judul Jajak Pendapat
+> - **values**: Isi opsi jajak pendapat
+> - **selectableCount**: `1` untuk satu pilihan, `0` untuk beberapa pilihan
 
 ## Contoh Penggunaan Lengkap
 

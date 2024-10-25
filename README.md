@@ -402,6 +402,23 @@ location: [
 > - **latitude**: The latitude of the location to be shared.
 > - **longitude**: The longitude of the location to be shared.
 
+#### Polling
+
+```
+polling: [
+	{
+		id: '628xxxxxxxxxx@s.whatsapp.net',
+		name: 'Title Polling:',
+		values: ['Option 1', 'Option 2', 'Option 3'],
+		selectableCount: 1
+	}
+],
+```
+
+> - **name**: Poll Title
+> - **values**: Fill in the poll options
+> - **selectableCount**: `1` for just one option, `0` for multiple options
+
 ## Complete Usage Example
 
 ```javascript
