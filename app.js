@@ -10,23 +10,8 @@ const QRCustom = async (qr) => {
     }
 };
 
-const AutoResponse = {
-    'text': {
-        '!text': { 
-			response: 'pong!', 
-			reply: false 
-		}
-    },
-};
-
-const ManualResponse = {
-	text: [
-		{
-			id: '6281234567890@s.whatsapp.net',
-			messageText: 'I sent text!'
-		}
-	],
-};
+const AutoResponse = {};
+const ManualResponse = {};
 
 (async () => {
     const sock = await WaBot(false, QRCustom, AutoResponse, ManualResponse);
