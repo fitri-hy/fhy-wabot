@@ -265,7 +265,7 @@ WaBot(false, null, AutoResponse, null);
 
 #### Polling
 
-```
+```javascript
 'polling': {
 	'!poll': { 
 		poll: {
@@ -298,6 +298,46 @@ WaBot(false, null, AutoResponse, null);
 		reply: false 
 	}
 }
+```
+
+#### VCard
+
+```
+'vcard': {
+	'!vcard': { 
+		contacts: {
+			fullName: 'Your Name',
+			organization: 'Organization Name',
+			phoneId: '+62 8xx xxxx xxxx',
+			whatsappId: '628xxxxxxxxxx'
+		},
+		reply: false 
+	}
+},
+```
+
+> - **fullName**: Contact Name
+> - **organization**: Organization Name
+> - **phoneId**: Phone number
+> - **whatsappId**: Whatsapp number
+
+#### VCard With Reaction
+
+```
+'vcardReact': {
+	'!vcard-react': { 
+		contacts: {
+			fullName: 'Your Name',
+			organization: 'Organization Name',
+			phoneId: '+62 8xx xxxx xxxx',
+			whatsappId: '628xxxxxxxxxx'
+		},
+		preReact: '⏳', 
+		postReact: '✅', 
+		errReact: '❌', 
+		reply: false 
+	}
+},
 ```
 
 ## Sending Messages
@@ -404,7 +444,7 @@ location: [
 
 #### Polling
 
-```
+```javascript
 polling: [
 	{
 		id: '628xxxxxxxxxx@s.whatsapp.net',
@@ -418,6 +458,25 @@ polling: [
 > - **name**: Poll Title
 > - **values**: Fill in the poll options
 > - **selectableCount**: `1` for just one option, `0` for multiple options
+
+#### VCard
+
+```
+vcard: [
+	{
+		id: '628xxxxxxxxxx@s.whatsapp.net',
+		fullName: 'Your Name',
+		organization: 'Organization Name',
+		phoneId: '+62 8xx xxxx xxxx',
+		whatsappId: '628xxxxxxxxxx'
+	}
+],
+```
+
+> - **fullName**: Contact Name
+> - **organization**: Organization Name
+> - **phoneId**: Phone number
+> - **whatsappId**: Whatsapp number
 
 ## Complete Usage Example
 
@@ -540,6 +599,41 @@ const ManualResponse = {
     });
 })();
 ```
+
+## Send Message With Endpoint
+
+```javascript
+const express = require('express');
+const { WaBot } = require('fhy-wabot');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+app.use(express.json());
+
+app.post('/send-message', async (req, res) => {
+    const { id, messageText } = req.body;
+
+    if (!id || !messageText) {
+        return res.status(400).json({ error: 'ID and messageText are required.' });
+    }
+
+    const ManualResponse = {
+        text: [{ id: `${id}@s.whatsapp.net`, messageText }]
+    };
+
+    try {
+        await WaBot(false, null, null, ManualResponse);
+        res.json({ message: 'Message sent successfully.', recipient: `${id}@s.whatsapp.net` });
+    } catch (error) {
+        console.error('Failed to send message:', error);
+        res.status(500).json({ error: 'Failed to send message.' });
+    }
+});
+```
+
+> - npm install express
+> - Endpoint: `http://localhost:3000/send-message`
+> - Body Request: `{ "id": "628xxxxxxxxxx", "messageText": "Hello from Endpoint!" }`
 
 ## Support and Contributions
 
