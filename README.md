@@ -1,5 +1,4 @@
 - [English Version](./README.md)
-- [Versi Bahasa Indonesia](./README-id.md)
 
 # Documentation
 
@@ -28,10 +27,36 @@ const { WaBot } = require('fhy-wabot');
 
 #### Initialize and Run the Bot
 
-Next, call the `WaBot()` function to initialize and run the bot:
+Next, call the `WaBot()` function to initialize and run the bot
+
+**Initialization has fixed rules**:
 
 ```javascript
-WaBot(false, null, null, null);
+WaBot(QRUrl = false, QRCustom, AutoResponse, ManualResponse, self = false);`
+```
+
+> - `QRUrl`: to set the use of QR Url (set: `true` or `false`)
+> - `QRCustom`: to create a custom QR url function (if you don't want to use it set to: `null`)
+> - `AutoResponse`: to Initialize the function of `AutoResponse` (if you don't want to use it set to: `null`
+> - `ManualResponse`: to Initialize the function of `ManualResponse` (if you don't want to use it set to: `null`
+> - `self`: to set the use of self mode (set: `true` or `false`)
+
+**Basic usage example that just uses the defaults:**
+
+```javascript
+WaBot(QRUrl = false, null, null, null, self = false);
+```
+
+You can use another method
+
+```javascript
+WaBot(false, null, null, null, false);
+```
+
+or
+
+```
+WaBot(true, null, null, null, true);
 ```
 
 #### Usage Example
@@ -41,8 +66,8 @@ Here’s a complete example of how to use `fhy-wabot`:
 ```javascript
 const { WaBot } = require('fhy-wabot');
 
-// Initialize and run the bot
-WaBot(false, null, null, null);
+// Default Initialize and run the bot
+WaBot(false, null, null, null, false);
 ```
 
 #### QRCode Url
@@ -62,7 +87,14 @@ const QRCustom = async (qr) => {
     }
 };
 
-WaBot(true, QRCustom, null, null);
+WaBot(true, QRCustom, null, null, false);
+```
+
+
+#### Self Mode
+
+```
+WaBot(false, null, null, null, true);
 ```
 
 ## Sending Automatic Response Messages
@@ -83,7 +115,7 @@ const AutoResponse = {
     // You can add other data types here
 };
 
-WaBot(false, null, AutoResponse, null);
+WaBot(false, null, AutoResponse, null, false);
 ```
 
 > - **response**: The message that will be sent (e.g., 'pong!').
@@ -356,7 +388,7 @@ const ManualResponse = {
 	],
 };
 
-WaBot(false, null, null, ManualResponse);
+WaBot(false, null, null, ManualResponse, false);
 ```
 
 #### Text
@@ -515,7 +547,7 @@ const ManualResponse = {
     // You can add other data types here
 };
 
-WaBot(true, QRCustom, AutoResponse, ManualResponse);
+WaBot(true, QRCustom, AutoResponse, ManualResponse, false);
 ```
 
 ## Advanced Usage Example
@@ -527,7 +559,7 @@ const AutoResponse = {};
 const ManualResponse = {};
 
 (async () => {
-    const sock = await WaBot(false, null, AutoResponse, ManualResponse);
+    const sock = await WaBot(false, null, AutoResponse, ManualResponse, false);
 
     sock.ev.on('messages.upsert', async ({ messages }) => {
         const { remoteJid: sender } = messages[0].key;
@@ -582,7 +614,7 @@ const ManualResponse = {
 };
 
 (async () => {
-    const sock = await WaBot(true, QRCustom, AutoResponse, ManualResponse);
+    const sock = await WaBot(true, QRCustom, AutoResponse, ManualResponse, false);
 
     sock.ev.on('messages.upsert', async ({ messages }) => {
         const { remoteJid: sender } = messages[0].key;
@@ -622,7 +654,7 @@ app.post('/send-message', async (req, res) => {
     };
 
     try {
-        await WaBot(false, null, null, ManualResponse);
+        await WaBot(false, null, null, ManualResponse, false);
         res.json({ message: 'Message sent successfully.', recipient: `${id}@s.whatsapp.net` });
     } catch (error) {
         console.error('Failed to send message:', error);
