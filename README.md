@@ -562,8 +562,9 @@ const ManualResponse = {};
     const sock = await WaBot(false, null, AutoResponse, ManualResponse, false);
 
     sock.ev.on('messages.upsert', async ({ messages }) => {
-        const { remoteJid: sender } = messages[0].key;
-        const text = messages[0].message.conversation || messages[0].message.extendedTextMessage?.text || '';
+        const message = messageUpdate.messages[0];
+        const sender = message.key.remoteJid;
+        const text = message.message.conversation || message.message.extendedTextMessage?.text || '';
 
         if (text.toLowerCase() === '!hi') {
             try {
@@ -617,8 +618,9 @@ const ManualResponse = {
     const sock = await WaBot(true, QRCustom, AutoResponse, ManualResponse, false);
 
     sock.ev.on('messages.upsert', async ({ messages }) => {
-        const { remoteJid: sender } = messages[0].key;
-        const text = messages[0].message.conversation || messages[0].message.extendedTextMessage?.text || '';
+        const message = messageUpdate.messages[0];
+        const sender = message.key.remoteJid;
+        const text = message.message.conversation || message.message.extendedTextMessage?.text || '';
 
         if (text.toLowerCase() === '.test') {
             try {
