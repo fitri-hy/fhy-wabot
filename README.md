@@ -561,7 +561,7 @@ const ManualResponse = {};
 (async () => {
     const sock = await WaBot(false, null, AutoResponse, ManualResponse, false);
 
-    sock.ev.on('messages.upsert', async ({ messages }) => {
+    sock.ev.on('messages.upsert', async (messageUpdate) => {
         const message = messageUpdate.messages[0];
         const sender = message.key.remoteJid;
         const text = message.message.conversation || message.message.extendedTextMessage?.text || '';
@@ -617,7 +617,7 @@ const ManualResponse = {
 (async () => {
     const sock = await WaBot(true, QRCustom, AutoResponse, ManualResponse, false);
 
-    sock.ev.on('messages.upsert', async ({ messages }) => {
+    sock.ev.on('messages.upsert', async (messageUpdate) => {
         const message = messageUpdate.messages[0];
         const sender = message.key.remoteJid;
         const text = message.message.conversation || message.message.extendedTextMessage?.text || '';
