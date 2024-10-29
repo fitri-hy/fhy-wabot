@@ -634,6 +634,36 @@ const ManualResponse = {
 })();
 ```
 
+#### Download Media Message
+
+Untuk mengunduh media Anda memerlukan `downloadMediaMessage`, `fs`, dan `path`
+
+```javascript
+const { WaBot, downloadMediaMessage } = require('fhy-wabot');
+const fs = require('fs');
+const path = require('path');
+```
+
+Usage example for downloading media when quoting a media message with the `.download` command:
+
+```javascript
+if (text.toLowerCase() === '.download') {
+	const quotedMessage = message.message.extendedTextMessage?.contextInfo?.quotedMessage;
+	if (quotedMessage?.imageMessage) {
+		try {
+			const buffer = await downloadMediaMessage({ message: quotedMessage }, 'buffer');
+			const inputFilePath = path.join(__dirname, './download.jpg');
+			fs.writeFileSync(inputFilePath, buffer);
+			console.log(`Image downloaded: ${inputFilePath}`);
+		} catch (error) {
+			console.error(`Error occurred: ${error.message}`);
+		}
+	} else {
+		console.log("Quoted message is not an image.");
+	}
+}
+```
+
 ## Send Message With Endpoint
 
 ```javascript

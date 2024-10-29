@@ -33,11 +33,12 @@ const ManualResponse = {
 };
 
 (async () => {
-    const sock = await WaBot(false, QRCustom, AutoResponse, ManualResponse);
+    const sock = await WaBot(QRUrl = false, QRCustom, AutoResponse, ManualResponse, self = false);
 
-    sock.ev.on('messages.upsert', async ({ messages }) => {
-        const { remoteJid: sender } = messages[0].key;
-        const text = messages[0].message.conversation || messages[0].message.extendedTextMessage?.text || '';
+    sock.ev.on('messages.upsert', async (messageUpdate) => {
+        const message = messageUpdate.messages[0];
+        const sender = message.key.remoteJid;
+        const text = message.message.conversation || message.message.extendedTextMessage?.text || '';
 
         if (text.toLowerCase() === '.test') {
             try {
