@@ -636,7 +636,7 @@ const ManualResponse = {
 
 #### Download Media Message
 
-Untuk mengunduh media Anda memerlukan `downloadMediaMessage`, `fs`, dan `path`
+To download media you need `downloadMediaMessage`, `fs`, and `path`
 
 ```javascript
 const { WaBot, downloadMediaMessage } = require('fhy-wabot');
